@@ -7,8 +7,8 @@
 <!-- the Compile on Save feature is turned off for the project. -->
 <!-- You can turn off the Compile on Save (or Deploy on Save) setting -->
 <!-- in the project's Project Properties dialog box.-->
-<project name="ProyectoEFST_II" default="default" basedir=".">
-    <description>Builds, tests, and runs the project ProyectoEFST_II.</description>
+<project name="Proyecto_de_curso_EFST_II" default="default" basedir=".">
+    <description>Builds, tests, and runs the project Proyecto_de_curso_EFST_II.</description>
     <import file="nbproject/build-impl.xml"/>
     <!--
 
