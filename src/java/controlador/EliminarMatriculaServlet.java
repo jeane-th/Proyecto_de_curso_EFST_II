@@ -25,7 +25,6 @@ public class EliminarMatriculaServlet extends HttpServlet {
         HttpSession session = request.getSession();
         Usuario usuario = (Usuario) session.getAttribute("usuario");
 
-        // Seguridad
         if (usuario == null) {
             response.sendRedirect("login.jsp");
             return;
@@ -36,7 +35,6 @@ public class EliminarMatriculaServlet extends HttpServlet {
         MatriculaDAO dao = new MatriculaDAOImpl();
         dao.eliminarMatricula(usuario.getIdUsuario(), idCurso);
 
-        // Volver al perfil (recarga cursos)
         response.sendRedirect("perfil");
     }
 }

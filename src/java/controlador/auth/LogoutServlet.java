@@ -12,17 +12,23 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 
+
 @WebServlet(name = "LogoutServlet", urlPatterns = {"/LogoutServlet"})
 public class LogoutServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        //Obtenemos la sesion sin crear una nueva
+
+        // obtener sesion
         HttpSession session = request.getSession(false);
+
         if (session != null) {
-            session.invalidate(); // Borrar toda la sesion
+            System.out.println("Cerrando sesión de: " + session.getAttribute("usuario"));
+            session.invalidate(); // 🧹 Eliminar todos los atributos de la sesión
         }
-        response.sendRedirect(request.getContextPath() + "/");
+
+        // redirigir al login
+        response.sendRedirect(request.getContextPath() + "/login.jsp?logout=success");
     }
 }

@@ -8,6 +8,7 @@ package dao;
 import java.util.List;
 import modelo.Curso;
 
+
 public interface MatriculaDAO {
 
     boolean matricular(int idUsuario, int idCurso);

@@ -5,9 +5,8 @@
 package controlador.auth;
 
 import dao.UsuarioDAO;
-import dao.UsuarioDAOImpl;
+import dao.UsuarioDAOimpl;
 import java.io.IOException;
-import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -16,37 +15,40 @@ import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import modelo.Usuario;
 
+
 @WebServlet(name = "LoginServlet", urlPatterns = {"/login"})
 public class LoginServlet extends HttpServlet {
+
+    private UsuarioDAO dao = new UsuarioDAOimpl();
+
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException{
-            String email = request.getParameter("email");
-            String password = request.getParameter("password");
+            throws ServletException, IOException {
 
-            UsuarioDAO dao = new UsuarioDAOImpl();
-            Usuario u = dao.login(email, password);
-            
-            if(u != null){
-                HttpSession session = request.getSession();
-                session.setAttribute("usuario",u);
-                response.sendRedirect(request.getContextPath()+"/");
-                System.out.println("Sesion: "+u);
-            }else{
-                request.setAttribute("error", "Error en las credenciales");
-                request.getRequestDispatcher("login.jsp").forward(request, response);
+        String email = request.getParameter("email");
+        String password = request.getParameter("password");
+
+        Usuario u = dao.login(email, password);
+
+        if (u != null) {
+            HttpSession session = request.getSession();
+            session.setAttribute("usuario", u);
+            session.setAttribute("rol", u.getRol());
+
+            if ("Admin".equalsIgnoreCase(u.getRol())) {
+                response.sendRedirect(request.getContextPath() + "/dashboardAdmin");
+            } else {
+                response.sendRedirect(request.getContextPath() + "/");
             }
+
+        } else {
+            request.setAttribute("error", "❌ Usuario o contraseña incorrectos, intenta nuevamente.");
+            request.getRequestDispatcher("/login.jsp").forward(request, response);
         }
     }
 
-    /**
-     * Returns a short description of the servlet.
-     *
-     * @return a String containing servlet description
-     */
-//    @Override
-//    public String getServletInfo() {
-//        return "Short description";
-//    }// </editor-fold>
-//
-//}
+    @Override
+    public String getServletInfo() {
+        return "Servlet encargado del inicio de sesión de usuarios.";
+    }
+}

@@ -12,7 +12,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Html.html to edit thi
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+
         <link href="https://cdn.jsdelivr.net/npm/flowbite@4.0.1/dist/flowbite.min.css" rel="stylesheet" />
         <link href="https://cdn.jsdelivr.net/npm/daisyui@4.7.2/dist/full.min.css" rel="stylesheet" type="text/css" />
         <script src="https://cdn.tailwindcss.com"></script>
@@ -26,7 +26,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Html.html to edit thi
                 theme: {
                     extend: {
                         colors: {
-                            'brand-blue': '#2563eb', // Azul brillante del botÃ³n
+                            'brand-blue': '#2563eb', // Azul brillante del boton
                             'brand-dark': '#0f172a', // Fondo muy oscuro
                             'brand-card': '#1e293b', // Fondo de las cards
                         }
@@ -58,7 +58,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Html.html to edit thi
                 </nav>
                 <c:choose>
                     <c:when test="${not empty sessionScope.usuario}">
-                        <!-- Usuario logueado -->
+                        <!-- logeado -->
                         <div>
 
                             <button type="button" class="" id="user-menu-button" aria-expanded="false"
@@ -74,7 +74,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Html.html to edit thi
                                 <div class="py-3 px-4">
                                     <span class="block font-semibold">${sessionScope.usuario.nombre}</span>
                                     <span class="block truncate">${sessionScope.usuario.email}</span>
- 
+
                                 </div>
                                 <ul class="py-1" aria-labelledby="dropdown">
                                     <li>
@@ -93,7 +93,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Html.html to edit thi
                                     </li>
                                     <c:if test="${sessionScope.usuario.rol eq 'Admin'}">
                                         <li>
-                                            <a href="${pageContext.request.contextPath}/UsuarioServlet"
+                                            <a href="${pageContext.request.contextPath}/dashboardAdmin"
                                                class="flex items-center py-2 px-4  hover:bg-gray-100 hover:bg-gray-600 hover:text-white gap-2">
                                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24"
                                                      fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
@@ -118,7 +118,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Html.html to edit thi
                     </c:when>
 
                     <c:otherwise>
-                        <!-- Usuario NO logueado -->
+                        <!-- si no esta logeado -->
                         <a href="${pageContext.request.contextPath}/login.jsp"
                            class="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-1 px-2 p rounded-xl cursor-pointer px-4 py-2.5 my-4">
                             Iniciar sesión</a>
@@ -243,7 +243,11 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Html.html to edit thi
         <footer class="footer p-10 bg-brand-dark text-base-content border-t border-gray-800 max-w-7xl mx-auto">
             <aside>
                 <div class="flex items-center gap-2 mb-2">
-                    <i class="fa-solid fa-book-open text-blue-500 text-xl"></i>
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                         stroke="currentColor" class="text-blue-600 size-8 text-xl font-bold mr-3 h-6 sm:h-9">
+                    <path stroke-linecap="round" stroke-linejoin="round"
+                          d="M12 6.042A8.967 8.967 0 0 0 6 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 0 1 6 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 0 1 6-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0 0 18 18a8.967 8.967 0 0 0-6 2.292m0-14.25v14.25" />
+                    </svg>
                     <span class="text-xl font-bold text-white">AprenderYa</span>
                 </div>
                 <p class="text-gray-400 max-w-xs">Tu plataforma de aprendizaje online para alcanzar tus metas profesionales.</p>
@@ -271,7 +275,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Html.html to edit thi
         </footer>
         <div class="footer footer-center p-4 bg-brand-dark text-gray-500 border-t border-gray-800">
             <aside>
-                <p>© 2025 AprenderYa. Todos los derechos reservados.</p>
+                <p>© 2026 AprenderYa. Todos los derechos reservados.</p>
             </aside>
         </div>
         <script>

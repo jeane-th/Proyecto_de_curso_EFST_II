@@ -6,6 +6,8 @@ package controlador;
 
 import dao.CursoDAO;
 import dao.CursoDAOImpl;
+import dao.ReviewDAO;
+import dao.ReviewDAOImpl;
 import modelo.Curso;
 
 import jakarta.servlet.ServletException;
@@ -15,6 +17,9 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
 import java.io.IOException;
+import java.util.List;
+import modelo.Review;
+
 
 @WebServlet("/curso")
 public class CursoServlet extends HttpServlet {
@@ -23,7 +28,6 @@ public class CursoServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-        // 1. Validar parámetro
         String idParam = request.getParameter("id");
         if (idParam == null) {
             response.sendRedirect(request.getContextPath() + "/");
@@ -38,18 +42,23 @@ public class CursoServlet extends HttpServlet {
             return;
         }
 
-        // 2. DAO
         CursoDAO dao = new CursoDAOImpl();
+        
+        ReviewDAO reviewDAO = new ReviewDAOImpl();
+        List<Review> reviews = reviewDAO.listarPorCurso(idCurso);
+        double promedio = reviewDAO.obtenerPromedio(idCurso);
+        int total = reviewDAO.contarPorCurso(idCurso);
 
-        // 3. Obtener curso
         Curso curso = dao.buscar(idCurso);
 
         if (curso == null) {
             response.sendRedirect(request.getContextPath() + "/");
             return;
         }
-
-        // 4. Enviar a la vista (CLAVE)
+        
+        request.setAttribute("reviews", reviews);
+        request.setAttribute("promedio", promedio);
+        request.setAttribute("totalReviews", total);
         request.setAttribute("curso", curso);
         request.getRequestDispatcher("/curso.jsp").forward(request, response);
     }

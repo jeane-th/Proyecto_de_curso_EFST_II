@@ -10,6 +10,8 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
         <link href="https://cdn.jsdelivr.net/npm/flowbite@4.0.1/dist/flowbite.min.css" rel="stylesheet" />
+               <link href="https://cdn.jsdelivr.net/npm/daisyui@4.7.2/dist/full.min.css" rel="stylesheet" type="text/css" />
+        <script src="https://cdn.tailwindcss.com"></script>
         <link rel="icon" type="image/svg+xml" href="icons/icon_book.svg">
         <title>AprendeYa | Registro</title>
     </head>
@@ -102,10 +104,10 @@
             </div>
         </header>
 
-
-        <main class="pt-16 bg-gray-900">
+        <main class="bg-blue-950/50 py-16 mt-16">
             <section
-                class="p-5 max-w-md mx-auto m-16 rounded-lg border border-gray-200 shadow-sm border-gray-700 bg-gray-800">
+                class="p-5 max-w-md mx-auto rounded-lg border 
+                border-gray-200 shadow-sm border-gray-700 bg-gray-800">
                 <div class="mb-5">
                     <div class="size-16 bg-blue-600 text-white rounded-full flex items-center justify-center mx-auto mb-4">
                         <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none"
@@ -163,12 +165,46 @@
         </div> -->
             </section>
         </main>
-        <script src="https://cdn.jsdelivr.net/npm/flowbite@4.0.1/dist/flowbite.min.js"></script>
 
-        <!-- Librería JustValidate (SIN defer) -->
-        <script src="https://cdn.jsdelivr.net/npm/just-validate@latest/dist/just-validate.production.min.js"></script>
-
-        <!-- Tu validación -->
+                 <footer class="footer p-10 bg-brand-dark text-base-content border-t border-gray-800 max-w-7xl mx-auto">
+            <aside>
+                <div class="flex items-center gap-2 mb-2">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                         stroke="currentColor" class="text-blue-600 size-8 text-xl font-bold mr-3 h-6 sm:h-9">
+                    <path stroke-linecap="round" stroke-linejoin="round"
+                          d="M12 6.042A8.967 8.967 0 0 0 6 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 0 1 6 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 0 1 6-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0 0 18 18a8.967 8.967 0 0 0-6 2.292m0-14.25v14.25" />
+                    </svg>
+                    <span class="text-xl font-bold text-white">AprenderYa</span>
+                </div>
+                <p class="text-gray-400 max-w-xs">Tu plataforma de aprendizaje online para alcanzar tus metas profesionales.</p>
+            </aside> 
+            <nav>
+                <h6 class="footer-title text-white opacity-100">Cursos</h6> 
+                <a class="link link-hover text-gray-400">Desarrollo Web</a>
+                <a class="link link-hover text-gray-400">Diseño</a>
+                <a class="link link-hover text-gray-400">Marketing</a>
+                <a class="link link-hover text-gray-400">Negocios</a>
+            </nav> 
+            <nav>
+                <h6 class="footer-title text-white opacity-100">Empresa</h6> 
+                <a class="link link-hover text-gray-400">Sobre Nosotros</a>
+                <a class="link link-hover text-gray-400">Blog</a>
+                <a class="link link-hover text-gray-400">Carreras</a>
+                <a class="link link-hover text-gray-400">Contacto</a>
+            </nav> 
+            <nav>
+                <h6 class="footer-title text-white opacity-100">Legal</h6> 
+                <a class="link link-hover text-gray-400">Terminos de Uso</a>
+                <a class="link link-hover text-gray-400">Privacidad</a>
+                <a class="link link-hover text-gray-400">Cookies</a>
+            </nav>
+        </footer>
+        <div class="footer footer-center p-4 bg-brand-dark text-gray-500 border-t border-gray-800">
+            <aside>
+                <p>© 2026 AprenderYa. Todos los derechos reservados.</p>
+            </aside>
+        </div>
+                
         <script>
             const validate = new JustValidate('#formRegistro', {
                 errorFieldCssClass: 'border-red-500',
@@ -197,6 +233,10 @@
                 event.target.submit();
             });
         </script>
+        <script src="https://cdn.jsdelivr.net/npm/flowbite@4.0.1/dist/flowbite.min.js"></script>
+
+        <!-- Librería JustValidate (SIN defer) -->
+        <script src="https://cdn.jsdelivr.net/npm/just-validate@latest/dist/just-validate.production.min.js"></script>
 
     </body>
 

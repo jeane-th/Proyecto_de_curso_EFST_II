@@ -10,13 +10,14 @@ import java.util.List;
 import modelo.Curso;
 import util.Conexion;
 
+
 public class MatriculaDAOImpl implements MatriculaDAO {
 
     @Override
     public boolean matricular(int idUsuario, int idCurso) {
-
         try (Connection con = Conexion.getConnection()) {
 
+            // reactivar 
             String updateSql = """
                 UPDATE matriculas
                 SET estado = 1
@@ -29,6 +30,7 @@ public class MatriculaDAOImpl implements MatriculaDAO {
 
                 int filas = ps.executeUpdate();
 
+                // insertar si no existe
                 if (filas == 0) {
                     String insertSql = """
                         INSERT INTO matriculas (idUsuario, idCurso, estado)
@@ -53,21 +55,20 @@ public class MatriculaDAOImpl implements MatriculaDAO {
 
     @Override
     public boolean estaMatriculado(int idUsuario, int idCurso) {
-
         String sql = """
             SELECT idMatricula
             FROM matriculas
             WHERE idUsuario = ? AND idCurso = ? AND estado = 1
         """;
 
-        try (Connection con = Conexion.getConnection(); PreparedStatement ps = con.prepareStatement(sql)) {
+        try (Connection con = Conexion.getConnection();
+             PreparedStatement ps = con.prepareStatement(sql)) {
 
             ps.setInt(1, idUsuario);
             ps.setInt(2, idCurso);
 
-            try (ResultSet rs = ps.executeQuery()) {
-                return rs.next();
-            }
+            ResultSet rs = ps.executeQuery();
+            return rs.next();
 
         } catch (Exception e) {
             System.err.println("Error validar matrícula: " + e.getMessage());
@@ -77,21 +78,20 @@ public class MatriculaDAOImpl implements MatriculaDAO {
 
     @Override
     public boolean existeMatricula(int idUsuario, int idCurso) {
-
         String sql = """
             SELECT idMatricula
             FROM matriculas
             WHERE idUsuario = ? AND idCurso = ?
         """;
 
-        try (Connection con = Conexion.getConnection(); PreparedStatement ps = con.prepareStatement(sql)) {
+        try (Connection con = Conexion.getConnection();
+             PreparedStatement ps = con.prepareStatement(sql)) {
 
             ps.setInt(1, idUsuario);
             ps.setInt(2, idCurso);
 
-            try (ResultSet rs = ps.executeQuery()) {
-                return rs.next();
-            }
+            ResultSet rs = ps.executeQuery();
+            return rs.next();
 
         } catch (Exception e) {
             System.err.println("Error existeMatricula: " + e.getMessage());
@@ -101,7 +101,6 @@ public class MatriculaDAOImpl implements MatriculaDAO {
 
     @Override
     public List<Curso> cursosPorUsuario(int idUsuario) {
-
         List<Curso> lista = new ArrayList<>();
 
         String sql = """
@@ -111,26 +110,26 @@ public class MatriculaDAOImpl implements MatriculaDAO {
             WHERE m.idUsuario = ? AND m.estado = 1
         """;
 
-        try (Connection con = Conexion.getConnection(); PreparedStatement ps = con.prepareStatement(sql);) {
+        try (Connection con = Conexion.getConnection();
+             PreparedStatement ps = con.prepareStatement(sql)) {
 
             ps.setInt(1, idUsuario);
+            ResultSet rs = ps.executeQuery();
 
-            try (ResultSet rs = ps.executeQuery()) {
-                while (rs.next()) {
-                    Curso c = new Curso();
-                    c.setIdCurso(rs.getInt("idCurso"));
-                    c.setTitulo(rs.getString("titulo"));
-                    c.setDescripcion(rs.getString("descripcion"));
-                    c.setCategoria(rs.getString("categoria"));
-                    c.setImagen(rs.getString("imagen"));
-                    c.setVideo(rs.getString("video"));
-                    c.setProfesor(rs.getString("profesor"));
-                    c.setPrecio(rs.getDouble("precio"));
-                    c.setDuracion(rs.getInt("duracion"));
-                    c.setEstado(rs.getBoolean("estado"));
+            while (rs.next()) {
+                Curso c = new Curso();
+                c.setIdCurso(rs.getInt("idCurso"));
+                c.setTitulo(rs.getString("titulo"));
+                c.setDescripcion(rs.getString("descripcion"));
+                c.setCategoria(rs.getString("categoria"));
+                c.setImagen(rs.getString("imagen"));
+                c.setVideo(rs.getString("video"));
+                c.setProfesor(rs.getString("profesor"));
+                c.setPrecio(rs.getDouble("precio"));
+                c.setDuracion(rs.getInt("duracion"));
+                c.setEstado(rs.getBoolean("estado"));
 
-                    lista.add(c);
-                }
+                lista.add(c);
             }
 
         } catch (Exception e) {
@@ -141,14 +140,14 @@ public class MatriculaDAOImpl implements MatriculaDAO {
 
     @Override
     public boolean eliminarMatricula(int idUsuario, int idCurso) {
-
         String sql = """
-                    UPDATE matriculas
-                    SET estado = 0
-                    WHERE idUsuario = ? AND idCurso = ?
-                """;
+            UPDATE matriculas
+            SET estado = 0
+            WHERE idUsuario = ? AND idCurso = ?
+        """;
 
-        try (Connection con = Conexion.getConnection(); PreparedStatement ps = con.prepareStatement(sql)) {
+        try (Connection con = Conexion.getConnection();
+             PreparedStatement ps = con.prepareStatement(sql)) {
 
             ps.setInt(1, idUsuario);
             ps.setInt(2, idCurso);

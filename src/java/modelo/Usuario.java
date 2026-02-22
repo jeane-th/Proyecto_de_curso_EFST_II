@@ -4,23 +4,24 @@
  */
 package modelo;
 
-public class Usuario {
 
-    // 1. ATRIBUTOS (Espejo de tu tabla en la imagen)
-    private int idUsuario;      // Viene de 'idUsuario'
+import java.sql.Timestamp;
+
+public class Usuario {
+ 
+    private int idUsuario;
     private String nombre;
     private String email;
     private String password;
     private String pais;
-    private String rol;         // Nuevo campo que vi en tu imagen
+    private String rol;
     private int estado;
-    private int nroCursos;   
+    private int nroCursos;
+    private Timestamp fechaRegistro;
 
-    // 2. CONSTRUCTOR VACÍO
     public Usuario() {
     }
 
-    // 3. CONSTRUCTOR COMPLETO
     public Usuario(int idUsuario, String nombre, String email, String password, String pais, String rol, int estado) {
         this.idUsuario = idUsuario;
         this.nombre = nombre;
@@ -31,7 +32,7 @@ public class Usuario {
         this.estado = estado;
     }
 
-    public Usuario(String nombre, String email, String password, String pais, String web, String descripcion, String rol, int estado) {
+    public Usuario(String nombre, String email, String password, String pais, String rol, int estado) {
         this.nombre = nombre;
         this.email = email;
         this.password = password;
@@ -40,7 +41,6 @@ public class Usuario {
         this.estado = estado;
     }
 
-    // 4. GETTERS Y SETTERS
     public int getIdUsuario() {
         return idUsuario;
     }
@@ -96,7 +96,7 @@ public class Usuario {
     public void setPais(String pais) {
         this.pais = pais;
     }
-    
+
     public int getNroCursos() {
         return nroCursos;
     }
@@ -104,7 +104,12 @@ public class Usuario {
     public void setNroCursos(int nroCursos) {
         this.nroCursos = nroCursos;
     }
+
+    public Timestamp getFechaRegistro() {
+        return fechaRegistro;
+    }
+
+    public void setFechaRegistro(Timestamp fechaRegistro) {
+        this.fechaRegistro = fechaRegistro;
+    }
 }
-
-
-   

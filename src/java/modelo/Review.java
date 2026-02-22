@@ -7,9 +7,9 @@ public class Review {
     private int idReview;
     private int idCurso;
     private int idUsuario;
-    private String nombreUsuario; // opcional, para mostrar en listings
+    private String nombreUsuario;
     private String comentario;
-    private int valoracion; // 1-5
+    private int valoracion;
     private Timestamp fecha;
 
     public Review() {

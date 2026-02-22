@@ -112,10 +112,20 @@
                             <div class="mx-auto space-y-6 mb-4" >
                                 <p class="text-base font-normal text-gray-500 text-gray-400">${curso.descripcion}.</p>
                             </div>
+
+                            <form action="CertificadoServlet" method="get" class="mt-6" target="_blank">
+                                 <input type="hidden" name="idCurso" value="${curso.idCurso}">
+                                <button type="submit" 
+                                        class="  inline-flex items-center py-2.5 px-4  font-medium text-center text-white bg-green-700 
+                                        rounded-lg focus:ring-4 focus:ring-blue-200 focus:ring-blue-900 hover:bg-green-800">Obtener Certificado</button>
+                            </form>
+
+  
+
                             <section class="bg-gray-900 py-8 lg:py-16 antialiased">
                                 <div class="mx-auto px-4">
                                     <div class="flex justify-between items-center mb-6">
-                                        <h2 class="text-lg lg:text-2xl font-bold text-white">       Comentarios (${totalReviews})</h2>
+                                        <h2 class="text-lg lg:text-2xl font-bold text-white">Comentarios (${totalReviews})</h2>
                                     </div>
                                     <!-- FORMULARIO DE COMENTARIOS -->
                                     <c:if test="${not empty sessionScope.usuario}">
@@ -148,6 +158,7 @@
                                     <c:if test="${empty sessionScope.usuario}">
                                         <p>Debes iniciar sesión para dejar un comentario.</p>
                                     </c:if>
+                                    <!--COMENTARIOS-->
                                     <section class="mt-8">
                                         <c:choose>
                                             <c:when test="${empty reviews}">

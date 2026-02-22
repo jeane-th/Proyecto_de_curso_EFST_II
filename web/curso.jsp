@@ -124,28 +124,19 @@
         </header>
 
         <main class="mt-24 max-w-6xl mx-auto px-6">
-
             <div class="grid grid-cols-1 lg:grid-cols-3 gap-10">
-
-
                 <div class="lg:col-span-2 bg-brand-card border border-gray-800 rounded-xl shadow-xl overflow-hidden">
-
                     <img src="${curso.imagen}" class="w-full h-72 object-cover">
-
                     <div class="p-8 space-y-4">
-
                         <span class="badge bg-blue-900 text-blue-200 border-none">
                             ${curso.categoria}
                         </span>
-
                         <h1 class="text-4xl font-bold">
                             ${curso.titulo}
                         </h1>
-
                         <p class="text-gray-400">
                             ${curso.descripcion}
                         </p>
-
                         <div class="flex flex-wrap gap-6 text-sm text-gray-400 pt-4">
                             <span><i class="fa-solid fa-user mr-1"></i> ${curso.profesor}</span>
                             <span><i class="fa-regular fa-clock mr-1"></i> ${curso.duracion} horas</span>
@@ -156,15 +147,11 @@
 
                     </div>
                 </div>
-
                 <div class="bg-brand-card border border-gray-800 rounded-xl shadow-xl p-6 h-fit">
-
                     <p class="text-3xl font-bold text-blue-400 mb-4">
                         S/ ${curso.precio}
                     </p>
-
                     <c:choose>
-
                         <c:when test="${not empty sessionScope.usuario}">
                             <form action="${pageContext.request.contextPath}/matricular" method="post">
                                 <input type="hidden" name="idCurso" value="${curso.idCurso}">
@@ -174,25 +161,97 @@
                                 </button>
                             </form>
                         </c:when>
-
                         <c:otherwise>
                             <a href="${pageContext.request.contextPath}/login.jsp"
                                class="btn w-full bg-brand-blue hover:bg-blue-700 text-white border-none text-center">
                                 Matricularme
                             </a>
                         </c:otherwise>
-
                     </c:choose>
-
                     <div class="mt-6 text-sm text-gray-400 space-y-2">
                         <p>✔ Acceso de por vida</p>
                         <p>✔ Certificado digital</p>
                         <p>✔ Contenido actualizado</p>
                     </div>
                 </div>
-
             </div>
+
+            <section class="mt-8 mb-4">
+             <div class="flex justify-between items-center mb-6">
+                                        <h2 class="text-lg lg:text-2xl font-bold text-white">Comentarios (${totalReviews})</h2>
+                                    </div>
+                <c:choose>
+                    <c:when test="${empty reviews}">
+                        <p class="text-gray-500">Aún no hay comentarios para este curso.</p>
+                    </c:when>
+                    <c:otherwise>
+                        <div class="space-y-4">
+                            <c:forEach var="r" items="${reviews}">
+                                <div class="bg-gray-800 rounded-lg shadow p-4">
+                                    <div class="flex items-center gap-2     mb-2">
+                                        <span
+                                            class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-1 px-2 w-6 h-6 rounded-full flex items-center justify-center cursor-pointer"> 
+                                            ${fn:toUpperCase(fn:substring(r.nombreUsuario, 0, 1))}
+                                        </span>
+                                        <span class="font-semibold text-gray-200">
+                                            ${r.nombreUsuario}
+                                        </span>
+                                        <span class="text-sm text-gray-300">
+                                            ⭐ ${r.valoracion}/5
+                                        </span>
+                                        <span class="font-semibold text-gray-200">
+                                            ${fn:toUpperCase(fn:substring(r.fecha, 0, 10))}
+                                        </span>
+                                    </div>
+                                    <p class="text-gray-300">
+                                        ${r.comentario}
+                                    </p>
+                                </div>
+                            </c:forEach>
+                        </div>
+                    </c:otherwise>
+                </c:choose>
+            </section>
         </main>
+
+        <footer class="footer p-10 bg-brand-dark text-base-content border-t border-gray-800 max-w-7xl mx-auto">
+            <aside>
+                <div class="flex items-center gap-2 mb-2">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                         stroke="currentColor" class="text-blue-600 size-8 text-xl font-bold mr-3 h-6 sm:h-9">
+                    <path stroke-linecap="round" stroke-linejoin="round"
+                          d="M12 6.042A8.967 8.967 0 0 0 6 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 0 1 6 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 0 1 6-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0 0 18 18a8.967 8.967 0 0 0-6 2.292m0-14.25v14.25" />
+                    </svg>
+                    <span class="text-xl font-bold text-white">AprenderYa</span>
+                </div>
+                <p class="text-gray-400 max-w-xs">Tu plataforma de aprendizaje online para alcanzar tus metas profesionales.</p>
+            </aside> 
+            <nav>
+                <h6 class="footer-title text-white opacity-100">Cursos</h6> 
+                <a class="link link-hover text-gray-400">Desarrollo Web</a>
+                <a class="link link-hover text-gray-400">Diseño</a>
+                <a class="link link-hover text-gray-400">Marketing</a>
+                <a class="link link-hover text-gray-400">Negocios</a>
+            </nav> 
+            <nav>
+                <h6 class="footer-title text-white opacity-100">Empresa</h6> 
+                <a class="link link-hover text-gray-400">Sobre Nosotros</a>
+                <a class="link link-hover text-gray-400">Blog</a>
+                <a class="link link-hover text-gray-400">Carreras</a>
+                <a class="link link-hover text-gray-400">Contacto</a>
+            </nav> 
+            <nav>
+                <h6 class="footer-title text-white opacity-100">Legal</h6> 
+                <a class="link link-hover text-gray-400">Terminos de Uso</a>
+                <a class="link link-hover text-gray-400">Privacidad</a>
+                <a class="link link-hover text-gray-400">Cookies</a>
+            </nav>
+        </footer>
+        <div class="footer footer-center p-4 bg-brand-dark text-gray-500 border-t border-gray-800">
+            <aside>
+                <p>© 2026 AprenderYa. Todos los derechos reservados.</p>
+            </aside>
+        </div>   
 
         <script src="https://cdn.jsdelivr.net/npm/flowbite@4.0.1/dist/flowbite.min.js"></script>
     </body>

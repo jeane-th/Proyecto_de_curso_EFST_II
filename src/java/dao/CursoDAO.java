@@ -7,18 +7,15 @@ package dao;
 import java.util.List;
 import modelo.Curso;
 
-//Agregar curso 
-//Listar cursos totales 
-//Buscar curso por id 
-//Actualizar curso 
-//Eliminar curso 
-//Desactivar curso 
-//Filtrar curso por categoría 
+
+
 public interface CursoDAO {
 
-    boolean agregar(Curso c);
+    boolean insertar(Curso c);
 
     List<Curso> listar();
+
+    List<Curso> listarConMatriculas();
 
     Curso buscar(int idCurso);
 
@@ -26,5 +23,5 @@ public interface CursoDAO {
 
     boolean eliminar(int idCurso);
 
-    boolean cambiarEstado(int idCurso, boolean estado); 
+    boolean cambiarEstado(int idCurso, boolean estado);
 }

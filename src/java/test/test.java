@@ -7,9 +7,13 @@ package test;
 import dao.CursoDAO;
 import dao.CursoDAOImpl;
 import dao.UsuarioDAO;
-import dao.UsuarioDAOImpl;
+import dao.UsuarioDAOimpl;
 import modelo.Usuario;
 
+/**
+ *
+ * @author Home
+ */
 public class test {
 
     public static void main(String[] args) {
@@ -26,3 +30,4 @@ public class test {
         //dao.validar("ana@gmail.com","123456");
     }
 }
+

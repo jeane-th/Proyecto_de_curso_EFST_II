@@ -21,13 +21,14 @@ import modelo.Curso;
 import modelo.Review;
 import modelo.Usuario;
 
+
 @WebServlet(name = "reproductorServlet", urlPatterns = {"/reproductorServlet"})
 public class reproductorServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        // obtenemos el id del curso
+
         int idCurso = Integer.parseInt(request.getParameter("id"));
         CursoDAO dao = new CursoDAOImpl();
         Curso curso = dao.buscar(idCurso);
@@ -51,25 +52,21 @@ public class reproductorServlet extends HttpServlet {
         HttpSession session = request.getSession(false);
         Usuario u = (Usuario) session.getAttribute("usuario");
 
-        // validar que la sesion exista
         if (u == null) {
             response.sendRedirect("login.jsp");
             return;
         }
 
-        // obtener datos del formulario
         int idCurso = Integer.parseInt(request.getParameter("idCurso"));
         int valoracion = Integer.parseInt(request.getParameter("valoracion"));
         String comentario = request.getParameter("comentario");
 
-        // creamos el objeto review/comentario
         Review r = new Review();
         r.setIdCurso(idCurso);
         r.setIdUsuario(u.getIdUsuario());
         r.setValoracion(valoracion);
         r.setComentario(comentario);
 
-        //  agregamos el cometario
         ReviewDAO dao = new ReviewDAOImpl();
 
         dao.insertar(r);

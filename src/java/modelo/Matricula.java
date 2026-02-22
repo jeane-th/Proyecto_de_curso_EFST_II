@@ -7,8 +7,6 @@ public class Matricula {
     private int idCurso;
     private int estado;
 
-    // getters y setters
-
     public int getIdMatricula() {
         return idMatricula;
     }

@@ -12,7 +12,7 @@ public class ReviewDAOImpl implements ReviewDAO {
 
     @Override
     public boolean insertar(Review r) {
-        // Primero validar que el usuario esté matriculado en el curso (tabla 'matriculas')
+        // validar si está matriculado
         String checkSql = "SELECT COUNT(*) AS cnt FROM matriculas WHERE idUsuario = ? AND idCurso = ? AND estado = 1";
         String insertSql = "INSERT INTO reviews(idCurso, idUsuario, comentario, valoracion, fecha) VALUES(?,?,?,?,NOW())";
 
@@ -25,7 +25,7 @@ public class ReviewDAOImpl implements ReviewDAO {
                 if (rs.next()) {
                     int cnt = rs.getInt("cnt");
                     if (cnt == 0) {
-                        // usuario no matriculado
+                        
                         return false;
                     }
                 }

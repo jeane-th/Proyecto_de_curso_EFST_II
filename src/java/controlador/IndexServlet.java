@@ -16,12 +16,13 @@ import jakarta.servlet.http.HttpServletResponse;
 import java.util.List;
 import modelo.Curso;
 
-@WebServlet("") // para ejecutar al cargar la pagina de inicio
+@WebServlet("")
 public class IndexServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        System.out.println("Entrando al servlet correcto");
         CursoDAO dao = new CursoDAOImpl();
         List<Curso> cursos = dao.listar();
         System.out.println("Cantidad de cursos: " + cursos.size());
