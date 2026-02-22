@@ -7,12 +7,7 @@ package util;
 import java.sql.Connection;
 import java.sql.DriverManager;
 
-/**
- *
- * @author Home
- */
-
-/*  conexion online
+/*  conexion online*/
 
 public class Conexion {
 
@@ -35,9 +30,10 @@ public class Conexion {
         return con;
     }
 
-}*/
+}
 
 /*Conexion local*/
+/*
 public class Conexion {
 
     private static final String URL = "jdbc:mysql://bhofdycde3nrmo12f1zd-mysql.services.clever-cloud.com:3306/bhofdycde3nrmo12f1zd";
@@ -56,5 +52,5 @@ public class Conexion {
         return con;
     }
 }
-
+*/
 
